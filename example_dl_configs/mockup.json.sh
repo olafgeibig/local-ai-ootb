@@ -1,12 +1,19 @@
 #!/bin/bash
 
-# prints out json for mockup model (test purpose)
+# Prints out JSON for mockup model and template (test purpose)
 
 scriptdir=$(dirname $(readlink -e $BASH_SOURCE))
 
-echo "[{
-        \"url\":\"file://$scriptdir/mockup_model.bin\",
-        \"name\":\"mockup\",
-        \"template\": \"...\"
-}
-]"
+echo '{
+    "models": [{
+        "url": "file://'"$scriptdir"'/mockup_model.bin",
+        "name": "mockup"
+    }],
+    "templates": [{
+        "name": "template1",
+        "content": "this is the text content of the template"
+    }, {
+        "name": "template2",
+        "content": "blabla"
+    }]
+}'
