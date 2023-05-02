@@ -19,7 +19,7 @@ jobs:
         run: |
           # Use the GitHub REST API to get the HEAD SHA of another repository
           # Store the SHA in an environment variable
-          export COMMIT_SHA=$(curl --silent https://api.github.com/repos/go-skynet/LocalAI/branches/master | jq -r '.commit.sha')
+          echo "COMMIT_SHA=$(curl --silent https://api.github.com/repos/go-skynet/LocalAI/branches/master | jq -r '.commit.sha')" >> $GITHUB_ENV
           echo $COMMIT_SHA
     
       - name: Checkout code
