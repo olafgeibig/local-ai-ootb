@@ -1,9 +1,12 @@
 ARG GO_VERSION=1.20
 ARG DEBIAN_VERSION=11
 ARG BUILD_TYPE=Release
+ARG COMMIT_SHA=HEAD
 
 FROM golang:$GO_VERSION as builder
-RUN git clone https://github.com/go-skynet/LocalAI.git --depth=1 /build
+RUN git clone https://github.com/go-skynet/LocalAI.git /build \
+    && cd /app \
+    && git checkout $COMMIT_SHA
 RUN apt-get update && apt-get install -y cmake
 
 WORKDIR /build
