@@ -1,0 +1,22 @@
+[
+    {
+        "name": "ggml-gpt4all-j",
+        "parameters": {
+            "model": "ggml-gpt4all-j"
+        },
+        "context_size": 512,
+        "threads": 52,
+        "stopwords": [
+            "HUMAN:",
+            "### Response:"
+        ],
+        "roles": {
+            "user": "HUMAN:",
+            "system": "GPT:"
+        },
+        "template": {
+            "completion": "completion",
+            "chat": "ggml-gpt4all-j"
+        }
+    }
+]
