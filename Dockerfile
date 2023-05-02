@@ -5,7 +5,7 @@ ARG COMMIT_SHA=HEAD
 
 FROM golang:$GO_VERSION as builder
 RUN git clone https://github.com/go-skynet/LocalAI.git /build \
-    && cd /app \
+    && cd /build \
     && git checkout $COMMIT_SHA
 RUN apt-get update && apt-get install -y cmake
 
