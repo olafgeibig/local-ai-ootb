@@ -4,7 +4,9 @@ This project builds a dockerfile to run local-ai as a backend on e.g. runpod.ai
 
 Sources of local-ai can be found at https://github.com/go-skynet/LocalAI
 
-You can configure the behavior using environment variables:
+There's a runpod template available: https://github.com/fHachenberg/local-ai-ootb
+
+You can configure the behavior of the docker image using environment variables:
 
 - `MODEL_DOWNLOAD_CONFIG` json content describing which ggml models to download during startup.
                           Here's an example. You can find more examples in `example_dl_configs`.
