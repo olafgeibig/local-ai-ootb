@@ -10,13 +10,20 @@ You can configure the behavior using environment variables:
                           Here's an example. You can find more examples in `example_dl_configs`.
                           Newlines in the template string must be encoded as `\n`.
 
-        [
-            {
-                "url": "https://gpt4all.io/models/ggml-gpt4all-j.bin",
-                "name": "ggml-gpt4all-j",
-                "template": "The prompt below is a question to answer, a task to complete, or a conversation to respond to; decide which and write an appropriate response.\n### Prompt:\n{{.Input}}\n### Response:\n"
-            }
-        ]
+        {
+            "models": [
+                {
+                    "url": "https://gpt4all.io/models/ggml-gpt4all-j.bin",
+                    "name": "ggml-gpt4all-j"
+                }
+            ],
+            "templates": [
+                {
+                    "name": "ggml-gpt4all-j",
+                    "content": "The prompt below is a question to answer, a task to complete, or a conversation to respond to; decide which and write an appropriate response.\n### Prompt:\n{{.Input}}\n### Response:\n"
+                }
+            ]
+        }
 
                           
 
