@@ -2,9 +2,9 @@
 
 This project builds a dockerfile to run local-ai as a backend on e.g. runpod.ai
 
-Sources of local-ai can be found at https://github.com/go-skynet/LocalAI
-
-There's a runpod template available: https://runpod.io/gsc?template=uv9mtqnrd0&ref=984wlcra
+* Sources of local-ai can be found at https://github.com/go-skynet/LocalAI
+* There's a runpod template available: https://runpod.io/gsc?template=uv9mtqnrd0&ref=984wlcra
+* Source for image creation resides at https://github.com/fHachenberg/local-ai-ootb
 
 You can configure the behavior of the docker image using environment variables:
 
