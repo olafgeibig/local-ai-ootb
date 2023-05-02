@@ -15,11 +15,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get Head SHA of LocalAI
+        run: |
+          # Use the GitHub REST API to get the HEAD SHA of another repository
+          # Store the SHA in an environment variable
+          export COMMIT_SHA=$(curl --silent https://api.github.com/repos/go-skynet/LocalAI/branches/master | jq -r '.commit.sha')
+    
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Build Docker image
-        run: docker build -t local-ai-ootb --build-arg COMMIT_SHA=$(git rev-parse --short HEAD) .
+        run: docker build -t local-ai-ootb --build-arg COMMIT_SHA=$COMMIT_SHA .
 
       - name: Tag Docker image with latest and commit hash
         run: |
@@ -30,7 +36,7 @@ jobs:
         run: |
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
-      - name: Push Docker image to Docker Hub
+      - name: Push Docker image to Docker Hub (Tag is combination of this HEAD SHA and LocalAI SHA)
         run: |
           docker push theveryomni/local-ai-ootb:latest
-          docker push theveryomni/local-ai-ootb:$(git rev-parse --short HEAD)
+          docker push theveryomni/local-ai-ootb:$(git rev-parse --short HEAD)_$COMMIT_SHA
