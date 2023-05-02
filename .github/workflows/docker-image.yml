@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: '*/5 * * * *' # Trigger every day at midnight UTC
+    
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t local-ai-ootb --build-arg COMMIT_SHA=$(git rev-parse --short HEAD) .
+
+      - name: Tag Docker image with latest and commit hash
+        run: |
+          docker tag local-ai-ootb theveryomni/local-ai-ootb:latest
+          docker tag local-ai-ootb theveryomni/local-ai-ootb:$(git rev-parse --short HEAD)
+
+      - name: Login to Docker Hub
+        run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push theveryomni/local-ai-ootb:latest
+          docker push theveryomni/local-ai-ootb:$(git rev-parse --short HEAD)
