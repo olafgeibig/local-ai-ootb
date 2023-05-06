@@ -56,3 +56,12 @@ You can configure the behavior of the docker image using environment variables:
             }
         ]
 - `DEBUG false|true` activates additional debug messages during runtime of local-ai
+
+How to test
+-----------
+
+Download gpt2 once into `models/`. Then you can run
+
+    ./test_gpt2_locally.sh
+
+to do a rough e2e test of the container.
