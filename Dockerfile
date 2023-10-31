@@ -1,5 +1,5 @@
 ARG GO_VERSION=1.20
-ARG DEBIAN_VERSION=11
+ARG DEBIAN_VERSION=12
 ARG COMMIT_SHA=HEAD
 ARG BUILD_TYPE=
 # ------------------------------ build stage -----------------------------
